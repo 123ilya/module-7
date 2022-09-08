@@ -8,17 +8,19 @@ $searchRoot = '/opt/lampp/htdocs/Welcome/module-7/test_search';
 $searchName = 'test.html';
 $searchResult = [];
 
-function search($dir)
+function search($dir,$searchingFile ,&$resultArray)
 {
     foreach (scandir($dir) as $item) {
         if ($item !== '.' && $item !== '..' && is_dir($dir . '/' . $item)) {
-            echo 'folder ' . $item . PHP_EOL;
-            search($dir.'/'.$item);
-        } elseif ($item !== '.' && $item !== '..' && !is_dir($dir . '/' . $item)) {
-            echo 'file ' . $item . PHP_EOL;
+//            echo 'folder ' . $item . PHP_EOL;
+            search($dir . '/' . $item,$searchingFile,$resultArray);
+        } elseif ($item !== '.' && $item !== '..' && !is_dir($dir . '/' . $item) && $searchingFile==$item) {
+//            echo 'file ' . $item . PHP_EOL;
+            array_push($resultArray, $item);
         }
     }
 }
 
-search($searchRoot);
+search($searchRoot,'test.txt' ,$searchResult);
 
+var_dump($searchResult);

@@ -3,7 +3,8 @@
 //$dir = 'C:\Users\sobolev_ia\Desktop';
 //$files = scandir($dir);
 //var_dump(is_dir($dir));
-$searchRoot = '//opt/lampp/htdocs/Welcome/7/module-7/test_search';
+//$searchRoot = '//opt/lampp/htdocs/Welcome/7/module-7/test_search';
+$searchRoot = 'C:\Users\sobolev_ia\Desktop\PHP study\module-7\test_search';
 $searchName = 'test.html';
 $searchResult = [];
 
@@ -17,4 +18,4 @@ function search($dir)
 }
 
 search($searchRoot);
-//ghjfff
+

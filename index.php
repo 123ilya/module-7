@@ -11,12 +11,12 @@ $searchResult = [];
 function search($dir)
 {
     foreach (scandir($dir) as $item) {
-        if ($item !== '.' && $item !== '..' && is_dir($dir.'/'.$item)) {
-            echo 'folder '. $item.PHP_EOL;
-        } elseif ($item !== '.' && $item !== '..' && !is_dir($dir.'/'.$item)){
-            echo 'file '. $item.PHP_EOL;
+        if ($item !== '.' && $item !== '..' && is_dir($dir . '/' . $item)) {
+            echo 'folder ' . $item . PHP_EOL;
+            search($dir.'/'.$item);
+        } elseif ($item !== '.' && $item !== '..' && !is_dir($dir . '/' . $item)) {
+            echo 'file ' . $item . PHP_EOL;
         }
-
     }
 }
 

@@ -1,13 +1,10 @@
 <?php
 
-//$dir = 'C:\Users\sobolev_ia\Desktop';
-//$files = scandir($dir);
-//var_dump(is_dir($dir));
+
 $searchRoot = './test_search';
 $searchName = 'test.txt';
 $searchResult = [];
-//функция ищет и выводит файлы
-function search($dir, $searchingFile, &$resultArray)
+function search(string $dir,string $searchingFile,array &$resultArray)
 {
     foreach (scandir($dir) as $item) {
         if ($item !== '.' && $item !== '..' && is_dir($dir . '/' . $item)) {
@@ -18,17 +15,25 @@ function search($dir, $searchingFile, &$resultArray)
     }
 }
 
-//search($searchRoot, $searchName, $searchResult);
-
-//var_dump($searchResult);
-function searchFile($dir, $searchingFile, &$resultArray)
+//
+function searchFile(string $dir,string $searchingFile,array &$resultArray)
 {
     search($dir, $searchingFile, $resultArray);
+    //-------------------------------------------
+    function isSize(string $file): bool
+    {
+        return (boolean)filesize($file);
+    }
+
+    $resultArray = array_filter($resultArray, 'isSize');
     if (count($resultArray)) {
         foreach ($resultArray as $item) {
             echo $item . PHP_EOL;
         }
-    } else echo 'Поиск не дал результатов!'.PHP_EOL;
+    } else {
+        echo 'Поиск не дал результатов!' . PHP_EOL;
+    }
 }
+
 
 searchFile($searchRoot, $searchName, $searchResult);

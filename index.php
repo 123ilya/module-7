@@ -4,7 +4,8 @@
 $searchRoot = './test_search';
 $searchName = 'test.txt';
 $searchResult = [];
-function search(string $dir,string $searchingFile,array &$resultArray)
+
+function search(string $dir, string $searchingFile, array &$resultArray)
 {
     foreach (scandir($dir) as $item) {
         if ($item !== '.' && $item !== '..' && is_dir($dir . '/' . $item)) {
@@ -15,8 +16,7 @@ function search(string $dir,string $searchingFile,array &$resultArray)
     }
 }
 
-//
-function searchFile(string $dir,string $searchingFile,array &$resultArray)
+function searchFile(string $dir, string $searchingFile, array &$resultArray)
 {
     search($dir, $searchingFile, $resultArray);
     //-------------------------------------------
@@ -34,6 +34,5 @@ function searchFile(string $dir,string $searchingFile,array &$resultArray)
         echo 'Поиск не дал результатов!' . PHP_EOL;
     }
 }
-
 
 searchFile($searchRoot, $searchName, $searchResult);

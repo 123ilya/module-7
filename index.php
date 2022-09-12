@@ -20,35 +20,14 @@ function search(string $dir, string $searchingFile, array &$resultArray)
 
 //4. Вызываем функцию с заданными аргументами
 search($searchRoot, $searchName, $searchResult);
+//9. Отфильтровываем вайлы с нулевым размером
+$searchResult = array_filter($searchResult, function ($x) {
+   return (boolean) filesize($x);
+});
+
 //5. Выводим результат, обходя массив. В случае отсутствия результата выводим соответствующее сообщение.
 if (count($searchResult) == 0) {
     echo 'Поиск не дал результатов!';
 } else foreach ($searchResult as $item) {
     echo $item . PHP_EOL;
 }
-
-
-
-
-// Функция обёртка, позволяющая что либо делать, после обхода дирректорий и формирования массива результатов
-//function searchFile(string $dir, string $searchingFile, array &$resultArray)
-//{
-//    search($dir, $searchingFile, $resultArray);
-//    // функция, проверяющая пустой файл или нет
-//    function isSize(string $file): bool
-//    {
-//        return (boolean)filesize($file);
-//    }
-//
-////Фильтруем массив от пустых файлов
-//    $resultArray = array_filter($resultArray, 'isSize');
-//    if (count($resultArray)) {
-//        foreach ($resultArray as $item) {
-//            echo $item . PHP_EOL;
-//        }
-//    } else {
-//        echo 'Поиск не дал результатов!' . PHP_EOL;
-//    }
-//}
-//
-//searchFile($searchRoot, $searchName, $searchResult);

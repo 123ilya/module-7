@@ -9,15 +9,6 @@ $searchResult = [];
 //3.Создаём функцию, рекурсивно обхлодящую дирректорию. В случае, нахождения файла, путь файла добавляется в массив.
 function search(string $dir, string $searchingFile, array &$resultArray)
 {
-    //---------------------------------------------------------------------------
-//    foreach (scandir($dir) as $item) {
-//        if ($item !== '.' && $item !== '..' && is_dir($dir . '/' . $item)) {
-//            search($dir . '/' . $item, $searchingFile, $resultArray);
-//        } elseif ($item !== '.' && $item !== '..' && !is_dir($dir . '/' . $item) && $searchingFile == $item) {
-//            $resultArray[] = $dir . '/' . $item;
-//        }
-//    }
-    //-----------------------------------------------------------
     foreach (scandir($dir) as $item) {
         if ($item == '.' || $item == '..') {
             continue;
